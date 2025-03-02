@@ -352,6 +352,7 @@ func (c *httpClient) do(req *http.Request) (data []byte, err error) {
 const (
 	manchesterUnitedID = 33
 	premierLeagueID    = 39
+	rapidapiBaseUrl    = "https://api-football-v1.p.rapidapi.com/v3"
 )
 
 type fixture struct {
@@ -406,7 +407,7 @@ func (m model) getLastMatch(ctx context.Context) (fixtureResponse, error) {
 	params.Add("status", "FT")
 	params.Add("timezone", "Australia/Perth")
 
-	url := fmt.Sprintf("https://api-football-v1.p.rapidapi.com/v3/fixtures?%s", params.Encode())
+	url := fmt.Sprintf("%s/fixtures?%s", rapidapiBaseUrl, params.Encode())
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
@@ -439,7 +440,7 @@ func (m model) getLastFiveMatches(ctx context.Context) (fixtureResponse, error) 
 	params.Add("status", "FT")
 	params.Add("timezone", "Australia/Perth")
 
-	url := fmt.Sprintf("https://api-football-v1.p.rapidapi.com/v3/fixtures?%s", params.Encode())
+	url := fmt.Sprintf("%s/fixtures?%s", rapidapiBaseUrl, params.Encode())
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
@@ -475,7 +476,7 @@ func (m model) getNextMatch(ctx context.Context) (fixtureResponse, error) {
 	params.Add("next", "1")
 	params.Add("timezone", "Australia/Perth")
 
-	url := fmt.Sprintf("https://api-football-v1.p.rapidapi.com/v3/fixtures?%s", params.Encode())
+	url := fmt.Sprintf("%s/fixtures?%s", rapidapiBaseUrl, params.Encode())
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
@@ -507,7 +508,7 @@ func (m model) getNextFiveMatches(ctx context.Context) (fixtureResponse, error) 
 	params.Add("next", "5")
 	params.Add("timezone", "Australia/Perth")
 
-	url := fmt.Sprintf("https://api-football-v1.p.rapidapi.com/v3/fixtures?%s", params.Encode())
+	url := fmt.Sprintf("%s/fixtures?%s", rapidapiBaseUrl, params.Encode())
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
